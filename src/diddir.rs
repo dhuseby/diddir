@@ -300,17 +300,14 @@ impl<'a> DIDDir<'a> {
 
         let mut ids = HashMap::new();
 
-        println!("-----");
         for entry in fs::read_dir(path)? {
             let entry = entry?;
             if !entry.metadata()?.is_dir() {
                 let p = entry.path();
-                println!("id: {}", p.to_str().unwrap());
                 let pkid = p.file_name().unwrap().to_os_string().into_string().unwrap();
                 ids.insert(pkid, PathBuf::from(entry.path()));
             }
         }
-        println!("=====");
 
         Ok(ids)
     }
@@ -324,18 +321,15 @@ impl<'a> DIDDir<'a> {
 
         let mut aliases = HashMap::new();
 
-        println!("-----");
         for entry in fs::read_dir(path)? {
             let entry = entry?;
             if !entry.metadata()?.is_dir() {
                 let p = entry.path();
-                println!("alias: {}", p.to_str().unwrap());
                 let alias = p.file_name().unwrap().to_os_string().into_string().unwrap();
                 let pkid = fs::read_to_string(entry.path())?.trim().to_owned();
                 aliases.insert(alias, pkid);
             }
         }
-        println!("=====");
 
         Ok(aliases)
     }
