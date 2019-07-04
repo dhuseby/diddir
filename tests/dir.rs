@@ -13,11 +13,11 @@ use std::path::{Path, PathBuf};
 /* bring in OS-specific glue functions */
 cfg_if! {
     if #[cfg(unix)] {
-        use diddir::diddir::unix::DIDDirSys;
+        use diddir::dir::unix::DIDDirSys;
     } else if #[cfg(target_os = "windows")] {
-        use diddir::diddir::windows::DIDDirSys;
+        use diddir::dir::windows::DIDDirSys;
     } else if #[cfg(wasm)] {
-        use diddir::diddir::wasm::DIDDirSys;
+        use diddir::dir::wasm::DIDDirSys;
     }
 }
 

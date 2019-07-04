@@ -4,8 +4,8 @@ extern crate cfg_if;
 pub use self::config::Config;
 pub mod config;
 
-pub use self::diddir::DIDDir;
-pub mod diddir;
+pub use self::dir::DIDDir;
+pub mod dir;
 
-pub use self::did::*;
-pub mod did;
+pub use self::doc::*;
+pub mod doc;
